@@ -2,28 +2,15 @@
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-// アセンブリに関する一般情報は、以下の属性セットによって制御されます。
-// アセンブリに関連付けられている情報を変更するには、
-// これらの属性値を変更します。
-[assembly: AssemblyTitle("FluentTube.Uwp")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("FluentTube")]
+[assembly: AssemblyDescription("A wonderful yet fluent YouTube client for Windows 10/11")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("(c) onein528")]
 [assembly: AssemblyProduct("FluentTube.Uwp")]
-[assembly: AssemblyCopyright("Copyright ©  2022")]
-[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCopyright("Copyright © Tomoyuki Terashita 2022")]
+[assembly: AssemblyTrademark("(R) onein528 Products")]
 [assembly: AssemblyCulture("")]
 
-// アセンブリのバージョン情報は次の 4 つの値で構成されています:
-//
-//      メジャー バージョン
-//      マイナー バージョン
-//      ビルド番号
-//      Revision
-//
-// すべての値を指定するか、次を使用してビルド番号とリビジョン番号を既定に設定できます
-// 既定値にすることができます:
-//[アセンブリ: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
 [assembly: ComVisible(false)]

@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>FluentTube.ApiSamples</RootNamespace>
+    <LangVersion>latest</LangVersion>
+    <Platforms>AnyCPU;x86;x64</Platforms>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Google.Apis.Auth" Version="1.57.0" />
+    <PackageReference Include="Google.Apis.Core" Version="1.57.0" />
+    <PackageReference Include="Google.Apis.YouTube.v3" Version="1.57.0.2827" />
+  </ItemGroup>
+
+</Project>

@@ -6,8 +6,15 @@
     xmlns:local="using:FluentTube.Uwp.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+    xmlns:toolkit="using:Microsoft.Toolkit.Uwp.UI"
     muxc:BackdropMaterial.ApplyToRootOrPageBackground="True"
     mc:Ignorable="d">
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <!--<SolidColorBrush x:Key="NavigationViewContentGridBorderBrush" Color="Transparent" />-->
+        </ResourceDictionary>
+    </Page.Resources>
 
     <Grid>
         <Grid.RowDefinitions>
@@ -57,20 +64,65 @@
                 VerticalAlignment="Center"
                 PlaceholderText="Search Youtube..." />
         </Grid>
-        <muxc:NavigationView Grid.Row="1" IsTitleBarAutoPaddingEnabled="True">
-            <muxc:NavigationView.MenuItems>
-                <muxc:NavigationViewItem Content="Home" />
-                <muxc:NavigationViewItem Content="Shorts" />
-                <muxc:NavigationViewItem Content="Subscribed channels" />
-                <muxc:NavigationViewItemSeparator />
-                <muxc:NavigationViewItem Content="Library" />
-                <muxc:NavigationViewItem Content="History" />
-                <muxc:NavigationViewItem Content="Watch Late" />
-                <muxc:NavigationViewItemHeader Content="Subscribed channels" />
-                <muxc:NavigationViewItem Content="Someone 1" />
-                <muxc:NavigationViewItem Content="Someone 2" />
-                <muxc:NavigationViewItem Content="Someone 3" />
-            </muxc:NavigationView.MenuItems>
-        </muxc:NavigationView>
+        <Grid Grid.Row="1">
+            <muxc:NavigationView
+                x:Name="MainShellNavigationView"
+                IsPaneOpen="True"
+                IsTitleBarAutoPaddingEnabled="True"
+                ItemInvoked="OnMainShellNavigationViewItemInvoked"
+                Loaded="OnMainShellNavigationViewLoaded"
+                OpenPaneLength="256"
+                PaneDisplayMode="Left">
+                <muxc:NavigationView.MenuItems>
+                    <muxc:NavigationViewItem
+                        Content="Home"
+                        IsSelected="True"
+                        Tag="home">
+                        <muxc:NavigationViewItem.Icon>
+                            <FontIcon Glyph="&#xE80F;" />
+                        </muxc:NavigationViewItem.Icon>
+                    </muxc:NavigationViewItem>
+                    <muxc:NavigationViewItem
+                        Content="Shorts"
+                        IsEnabled="False"
+                        Tag="shorts">
+                        <muxc:NavigationViewItem.Icon>
+                            <FontIcon Glyph="&#xE74C;" />
+                        </muxc:NavigationViewItem.Icon>
+                    </muxc:NavigationViewItem>
+                    <muxc:NavigationViewItem Content="Subscriptions" Tag="subscriptions">
+                        <muxc:NavigationViewItem.Icon>
+                            <FontIcon Glyph="&#xE74C;" />
+                        </muxc:NavigationViewItem.Icon>
+                    </muxc:NavigationViewItem>
+                    <muxc:NavigationViewItemSeparator />
+                    <muxc:NavigationViewItem Content="Library" Tag="library">
+                        <muxc:NavigationViewItem.Icon>
+                            <FontIcon Glyph="&#xE74C;" />
+                        </muxc:NavigationViewItem.Icon>
+                    </muxc:NavigationViewItem>
+                    <muxc:NavigationViewItem Content="History" Tag="history">
+                        <muxc:NavigationViewItem.Icon>
+                            <FontIcon Glyph="&#xE74C;" />
+                        </muxc:NavigationViewItem.Icon>
+                    </muxc:NavigationViewItem>
+                    <muxc:NavigationViewItem Content="Watch Later" Tag="watchlater">
+                        <muxc:NavigationViewItem.Icon>
+                            <FontIcon Glyph="&#xE74C;" />
+                        </muxc:NavigationViewItem.Icon>
+                    </muxc:NavigationViewItem>
+                    <muxc:NavigationViewItem Content="Liked Videos" Tag="likedvideos">
+                        <muxc:NavigationViewItem.Icon>
+                            <FontIcon Glyph="&#xE74C;" />
+                        </muxc:NavigationViewItem.Icon>
+                    </muxc:NavigationViewItem>
+                    <muxc:NavigationViewItemSeparator />
+                    <muxc:NavigationViewItemHeader Content="Subscriptions" />
+                </muxc:NavigationView.MenuItems>
+                <muxc:NavigationView.Content>
+                    <Frame x:Name="MainShellFrame" />
+                </muxc:NavigationView.Content>
+            </muxc:NavigationView>
+        </Grid>
     </Grid>
 </Page>

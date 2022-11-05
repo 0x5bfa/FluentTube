@@ -12,6 +12,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using muxc = Microsoft.UI.Xaml.Controls;
 
 namespace FluentTube.Uwp.Views
 {
@@ -19,7 +20,51 @@ namespace FluentTube.Uwp.Views
     {
         public MainPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
+        }
+
+        private void OnMainShellNavigationViewItemInvoked(muxc.NavigationView sender, muxc.NavigationViewItemInvokedEventArgs args)
+        {
+            var tag = args.InvokedItemContainer.Tag.ToString().ToLower();
+
+            switch (tag)
+            {
+                default:
+                case "home":
+                    MainShellFrame.Navigate(typeof(HomePage));
+                    break;
+                case "shorts":
+                    break;
+                case "subscriptions":
+                    break;
+                case "library":
+                    MainShellFrame.Navigate(typeof(LibraryPage));
+                    break;
+                case "history":
+                    MainShellFrame.Navigate(typeof(HistoryPage));
+                    break;
+                case "watchlater":
+                    break;
+                case "likedvideos":
+                    MainShellFrame.Navigate(typeof(LikedVideosPage));
+                    break;
+            }
+        }
+
+        private void OnMainShellNavigationViewLoaded(object sender, RoutedEventArgs e)
+        {
+            var defaultItem
+                = MainShellNavigationView
+                .MenuItems
+                .OfType<NavigationViewItem>()
+                .FirstOrDefault();
+
+            MainShellNavigationView.SelectedItem
+                = MainShellNavigationView
+                .MenuItems
+                .OfType<NavigationViewItem>()
+                .FirstOrDefault(x => string.Compare(x.Tag.ToString().ToLower(), "home", true) == 0)
+                ?? defaultItem;
         }
     }
 }

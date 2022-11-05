@@ -4,14 +4,13 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <PlatformTarget>x64</PlatformTarget>
     <LangVersion>latest</LangVersion>
+    <Platforms>x64;x86</Platforms>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Google.Apis.YouTube.v3" Version="1.57.0.2721" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Data\" />
+      <PackageReference Include="Google.Apis.Auth" Version="1.57.0" />
+      <PackageReference Include="Google.Apis.Core" Version="1.57.0" />
+      <PackageReference Include="Google.Apis.YouTube.v3" Version="1.57.0.2827" />
   </ItemGroup>
 
 </Project>
