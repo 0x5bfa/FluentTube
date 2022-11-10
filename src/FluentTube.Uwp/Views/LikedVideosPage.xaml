@@ -8,6 +8,6 @@
     mc:Ignorable="d">
 
     <Grid>
-        <TextBlock Text="LikedVideosPage"/>
+        <TextBlock Text="LikedVideosPage" />
     </Grid>
 </Page>

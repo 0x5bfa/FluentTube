@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "FluentTube.App (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "FluentTube.App (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

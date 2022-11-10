@@ -29,16 +29,16 @@ namespace FluentTube.Uwp
     {
         public App()
         {
-            this.InitializeComponent();
-            this.Suspending += OnSuspending;
-
-            Services = ConfigureServices();
+            InitializeComponent();
+            Suspending += OnSuspending;
         }
 
         public new static App Current
             => (App)Application.Current;
 
-        public IServiceProvider Services { get; }
+        // This service provider will not be initialized when App() is initialized.
+        // Instead, this will be initialized on launched.
+        public IServiceProvider Services { get; set; }
 
         public static string AppVersion =
             $"{Package.Current.Id.Version.Major}." +
@@ -46,20 +46,20 @@ namespace FluentTube.Uwp
             $"{Package.Current.Id.Version.Build}." +
             $"{Package.Current.Id.Version.Revision}";
 
-        private IServiceProvider ConfigureServices()
+        private IServiceProvider ConfigureServices(YouTubeService ytSrvice)
         {
             return new ServiceCollection()
-                .AddSingleton<YouTubeConfigureServices>()
-                //.AddSingleton<Utils.ILogger>(new SerilogWrapperLogger(Serilog.Log.Logger))
-                //.AddSingleton<ToastService>()
-                //.AddSingleton<IMessenger>(StrongReferenceMessenger.Default)
-                // ViewModels
-                .AddTransient<MainViewModel>()
+                .AddSingleton(ytSrvice)
+                // View models
+                .AddTransient<HistoryViewModel>()
                 .AddTransient<HomeViewModel>()
+                .AddTransient<LibraryViewModel>()
+                .AddTransient<LikedVideosViewModel>()
+                .AddTransient<MainViewModel>()
                 .BuildServiceProvider();
         }
 
-        protected async override void OnLaunched(LaunchActivatedEventArgs e)
+        protected override async void OnLaunched(LaunchActivatedEventArgs e)
         {
             Frame rootFrame = Window.Current.Content as Frame;
 
@@ -67,10 +67,10 @@ namespace FluentTube.Uwp
             ApplicationView.GetForCurrentView().TitleBar.ButtonBackgroundColor = Colors.Transparent;
             ApplicationView.GetForCurrentView().TitleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
 
-            var file = await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///AppSecrets.json"));
-            var stream = await file.OpenStreamForReadAsync();
-            var secrets = GoogleClientSecrets.FromStream(stream).Secrets;
-            YouTubeConfigureServices.SetSecrets(secrets);
+            var service = await Core.ServiceProvider.GetServiceAsync();
+
+            // TODO: Must be initialized in App() constructor?
+            ConfigureServices(service);
 
             if (rootFrame == null)
             {

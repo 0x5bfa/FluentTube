@@ -8,10 +8,11 @@
     xmlns:models="using:FluentTube.Uwp.Models"
     xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
     xmlns:toolkit="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    xmlns:youtubedata="using:Google.Apis.YouTube.v3.Data"
     mc:Ignorable="d">
 
     <Page.Resources>
-        <DataTemplate x:Key="PhotosTemplate" x:DataType="models:VideoDetail">
+        <DataTemplate x:Key="HomeVideoDisplayTemplate" x:DataType="youtubedata:Activity">
             <Button
                 Padding="4"
                 Background="Transparent"
@@ -50,7 +51,7 @@
                                 TextTrimming="CharacterEllipsis"
                                 TextWrapping="Wrap" />
                             <TextBlock
-                                Margin="0,12,0,0"
+                                Margin="0,8,0,0"
                                 Foreground="{ThemeResource TextFillColorSecondary}"
                                 MaxLines="1"
                                 Style="{StaticResource CaptionTextBlockStyle}"
@@ -78,9 +79,33 @@
     </Page.Resources>
 
     <Grid>
-        <ScrollViewer>
-            <Grid Margin="32">
-                <muxc:ItemsRepeater ItemTemplate="{StaticResource PhotosTemplate}" ItemsSource="{x:Bind ViewModel.VideoDetails, Mode=OneWay}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid Margin="32,32,32,12">
+            <ScrollViewer
+                HorizontalScrollBarVisibility="Hidden"
+                HorizontalScrollMode="Enabled"
+                VerticalScrollMode="Disabled">
+                <StackPanel Orientation="Horizontal" Spacing="12">
+                    <Button Content="All" Style="{StaticResource AccentButtonStyle}" />
+                    <Button Content="Tag 1" />
+                    <Button Content="Tag 2" />
+                    <Button Content="Tag 3" />
+                    <Button Content="Tag 4" />
+                    <Button Content="Tag 5" />
+                    <Button Content="Tag 6" />
+                    <Button Content="Tag 7" />
+                    <Button Content="Tag 8" />
+                    <Button Content="Tag 9" />
+                    <Button Content="Tag 10" />
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+        <ScrollViewer Grid.Row="1">
+            <Grid Margin="32,0,32,32">
+                <muxc:ItemsRepeater ItemTemplate="{StaticResource HomeVideoDisplayTemplate}" ItemsSource="{x:Bind ViewModel.HomeActivities, Mode=OneWay}">
                     <muxc:ItemsRepeater.Layout>
                         <muxc:UniformGridLayout
                             ItemsStretch="Fill"

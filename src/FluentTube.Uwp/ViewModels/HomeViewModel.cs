@@ -7,24 +7,34 @@ namespace FluentTube.Uwp.ViewModels
 {
     public class HomeViewModel : ObservableObject
     {
-        public HomeViewModel(YouTubeConfigureServices services)
+        public HomeViewModel(YouTubeService services)
         {
-            VideoDetails = new ObservableCollection<VideoDetail>();
+            _service = services;
 
-            for (int i = 0; i < 100; i++)
-            {
-                VideoDetails.Add(new VideoDetail()
-                {
-                    Videoimage = new BitmapImage(new Uri("ms-appx:///Assets/panda.jpg")),
-                    Header = new BitmapImage(new Uri("ms-appx:///Assets/monkey.jpg")),
-                    Name = "author",
-                    title = "this is a video from test website",
-                    Time = DateTime.Now.Day.ToString(),
-                    Views = 9000
-                });
-            }
+            _homeActivities = new();
+            HomeActivities = new(_homeActivities);
+
+            LoadUserHomeActivitiesPageCommand = new AsyncRelayCommand(LoadUserHomeActivitiesPageAsync);
         }
 
-        public ObservableCollection<VideoDetail> VideoDetails { get; set; }
+        private readonly YouTubeService _service;
+
+        private readonly ObservableCollection<Activity> _homeActivities;
+        public ReadOnlyObservableCollection<Activity> HomeActivities { get; }
+
+        public IAsyncRelayCommand LoadUserHomeActivitiesPageCommand { get; }
+
+        private async Task LoadUserHomeActivitiesPageAsync()
+        {
+            var request = _service.Activities.List("snippet");
+            request.Home = true;
+
+            var response = await request.ExecuteAsync();
+
+            foreach (var item in response.Items)
+            {
+                _homeActivities.Add(item);
+            }
+        }
     }
 }
