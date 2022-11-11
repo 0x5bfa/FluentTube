@@ -12,26 +12,24 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using Windows.Storage;
 
-namespace FluentTube.App.Services
+namespace FluentTube.Core
 {
-    public class YouTubeServiceProvider
+    public class ServiceProvider
     {
         public static async Task<YouTubeService> GetServiceAsync()
         {
             UserCredential credential;
 
-            var file = await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///AppSecrets.json"));
-            var stream = await file.OpenStreamForReadAsync();
-            var secrets = GoogleClientSecrets.FromStream(stream).Secrets;
-
-            credential = await GoogleWebAuthorizationBroker.AuthorizeAsync(
-                secrets,
-                new[] { YouTubeService.Scope.Youtube },
-                "user",
-                CancellationToken.None
-            );
+            using (var stream = new FileStream("AppSecrets.json", FileMode.Open, FileAccess.Read))
+            {
+                credential = await GoogleWebAuthorizationBroker.AuthorizeAsync(
+                    GoogleClientSecrets.FromStream(stream).Secrets,
+                    new[] { YouTubeService.Scope.Youtube },
+                    "user",
+                    CancellationToken.None
+                );
+            }
 
             return new YouTubeService(new BaseClientService.Initializer()
             {

@@ -21,10 +21,18 @@ namespace FluentTube.App
 {
     public partial class App : Application
     {
+        public App()
+        {
+            InitializeComponent();
+
+            UnhandledException += OnUnhandledException;
+            TaskScheduler.UnobservedTaskException += OnUnobservedException;
+        }
+
         public new static App Current
             => (App)Application.Current;
 
-        public IServiceProvider Services { get; }
+        public IServiceProvider Services { get; set; }
 
         public static string AppVersion =
             $"{Package.Current.Id.Version.Major}." +
@@ -32,19 +40,10 @@ namespace FluentTube.App
             $"{Package.Current.Id.Version.Build}." +
             $"{Package.Current.Id.Version.Revision}";
 
-        public App()
-        {
-            InitializeComponent();
-
-            UnhandledException += OnUnhandledException;
-            TaskScheduler.UnobservedTaskException += OnUnobservedException;
-
-            Services = ConfigureServices();
-        }
-
-        private IServiceProvider ConfigureServices()
+        private IServiceProvider ConfigureServices(YouTubeService ytSrvice)
         {
             return new ServiceCollection()
+                .AddSingleton(ytSrvice)
                 .AddSingleton<IMessenger>(StrongReferenceMessenger.Default)
                 // ViewModels
                 .AddTransient<MainViewModel>()
@@ -64,6 +63,10 @@ namespace FluentTube.App
             //    System.Diagnostics.Process.GetCurrentProcess().Kill();
             //    return;
             //}
+
+            // TODO: Must be initialized in App() constructor?
+            var service = await FluentTube.App.Services.YouTubeServiceProvider.GetServiceAsync();
+            Services = ConfigureServices(service);
 
             // Initialize MainWindow here
             EnsureWindowIsInitialized();

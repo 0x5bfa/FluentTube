@@ -1,20 +1,20 @@
 ﻿using FluentTube.App.Models;
 using FluentTube.App.Services;
 using Microsoft.Extensions.DependencyInjection;
-using Windows.UI.Xaml.Media.Imaging;
+using Microsoft.UI.Xaml.Media.Imaging;
 
 namespace FluentTube.App.ViewModels
 {
     public class HistoryViewModel
     {
-        public HistoryViewModel(YouTubeServiceProvider services)
+        public HistoryViewModel(YouTubeService services)
         {
             _service = services;
 
             LoadUserHistoryPageCommand = new AsyncRelayCommand(LoadUserHistoryPageAsync);
         }
 
-        private readonly YouTubeServiceProvider _service;
+        private readonly YouTubeService _service;
 
         public IAsyncRelayCommand LoadUserHistoryPageCommand { get; }
 

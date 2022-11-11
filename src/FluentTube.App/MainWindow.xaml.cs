@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Microsoft.UI;
+﻿using Microsoft.UI;
 using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
@@ -30,7 +29,7 @@ namespace FluentTube.App
         {
             InitializeComponent();
 
-            PersistenceId = "FluentHubMainWindow";
+            PersistenceId = "FluentTubeMainWindow";
 
             EnsureEarlyWindow();
         }
@@ -38,7 +37,7 @@ namespace FluentTube.App
         private void EnsureEarlyWindow()
         {
             // Set title
-            AppWindow.Title = "FluentHub";
+            AppWindow.Title = "FluentTube";
 
             // Set icon
             AppWindow.SetIcon(Path.Combine(Windows.ApplicationModel.Package.Current.InstalledLocation.Path, "Assets/AppTiles/Release/StoreLogo.scale-400.png"));
@@ -64,24 +63,11 @@ namespace FluentTube.App
             {
                 case ILaunchActivatedEventArgs launchArgs:
                     {
-                        //if (rootFrame.Content == null)
-                        //{
-                        //    if (App.AppSettings.SetupCompleted == true)
-                        //    {
-                        //        Octokit.Authorization.InitializeOctokit.InitializeApiConnections(App.AppSettings.AccessToken);
-
-                        //        rootFrame.Navigate(typeof(Views.MainPage));
-                        //        pageType = typeof(Views.MainPage);
-                        //    }
-                        //    else
-                        //    {
-                        //        App.AppSettings.SetupProgress = false;
-                        //        App.AppSettings.SetupCompleted = false;
-
-                        //        rootFrame.Navigate(typeof(Views.SignIn.IntroPage));
-                        //        pageType = typeof(Views.SignIn.IntroPage);
-                        //    }
-                        //}
+                        if (rootFrame.Content == null)
+                        {
+                            rootFrame.Navigate(typeof(Views.MainPage));
+                            pageType = typeof(Views.MainPage);
+                        }
                     }
                     break;
             }

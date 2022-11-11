@@ -1,7 +1,7 @@
 ﻿using FluentTube.App.Models;
 using FluentTube.App.Services;
 using Microsoft.Extensions.DependencyInjection;
-using Windows.UI.Xaml.Media.Imaging;
+using Microsoft.UI.Xaml.Media.Imaging;
 
 namespace FluentTube.App.ViewModels
 {

@@ -1,20 +1,20 @@
 ﻿using FluentTube.App.Models;
 using FluentTube.App.Services;
 using Microsoft.Extensions.DependencyInjection;
-using Windows.UI.Xaml.Media.Imaging;
+using Microsoft.UI.Xaml.Media.Imaging;
 
 namespace FluentTube.App.ViewModels
 {
     public class LikedVideosViewModel
     {
-        public LikedVideosViewModel(YouTubeServiceProvider services)
+        public LikedVideosViewModel(YouTubeService services)
         {
             _service = services;
 
             LoadUserLikedVideosPageCommand = new AsyncRelayCommand(LoadUserLikedVideosPageAsync);
         }
 
-        private readonly YouTubeServiceProvider _service;
+        private readonly YouTubeService _service;
 
         public IAsyncRelayCommand LoadUserLikedVideosPageCommand { get; }
 

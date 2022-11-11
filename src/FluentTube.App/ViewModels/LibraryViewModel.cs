@@ -1,20 +1,20 @@
 ﻿using FluentTube.App.Models;
 using FluentTube.App.Services;
 using Microsoft.Extensions.DependencyInjection;
-using Windows.UI.Xaml.Media.Imaging;
+using Microsoft.UI.Xaml.Media.Imaging;
 
 namespace FluentTube.App.ViewModels
 {
     public class LibraryViewModel
     {
-        public LibraryViewModel(YouTubeServiceProvider services)
+        public LibraryViewModel(YouTubeService services)
         {
             _service = services;
 
             LoadUserHomeActivitiesPageCommand = new AsyncRelayCommand(LoadUserHomeActivitiesPageAsync);
         }
 
-        private readonly YouTubeServiceProvider _service;
+        private readonly YouTubeService _service;
 
         public IAsyncRelayCommand LoadUserHomeActivitiesPageCommand { get; }
 
