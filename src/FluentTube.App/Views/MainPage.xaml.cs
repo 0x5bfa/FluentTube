@@ -1,18 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
+﻿using FluentTube.App.Views.Users;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Controls.Primitives;
-using Microsoft.UI.Xaml.Data;
-using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
-using muxc = Microsoft.UI.Xaml.Controls;
 
 namespace FluentTube.App.Views
 {
@@ -21,29 +12,48 @@ namespace FluentTube.App.Views
         public MainPage()
         {
             InitializeComponent();
+
+            var provider = App.Current.Services;
+            MainFrame = provider.GetRequiredService<Frame>();
+            MainFrame.Navigating += OnMainFrameNavigating;
         }
 
-        private void OnMainShellNavigationViewItemInvoked(muxc.NavigationView sender, muxc.NavigationViewItemInvokedEventArgs args)
+        private void OnMainFrameNavigating(object sender, NavigatingCancelEventArgs e)
         {
-            var tag = args.InvokedItemContainer.Tag.ToString().ToLower();
+            MainShellFrame.Navigate(e.SourcePageType, e.Parameter);
+            e.Cancel = true;
+        }
 
+        private Frame MainFrame { get; }
+
+        private void OnMainShellNavigationViewSelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
+            => NavigatePageNavigationViewItemInvokedOrSelected(args.SelectedItemContainer.Tag.ToString().ToLower());
+
+        private void OnMainShellNavigationViewItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
+            => NavigatePageNavigationViewItemInvokedOrSelected(args.InvokedItemContainer.Tag.ToString().ToLower());
+
+        private void NavigatePageNavigationViewItemInvokedOrSelected(string tag)
+        {
             switch (tag)
             {
                 default:
                 case "home":
                     MainShellFrame.Navigate(typeof(HomePage));
                     break;
-                case "shorts":
+                case "trending":
+                    MainShellFrame.Navigate(typeof(TrendingPage));
                     break;
                 case "subscriptions":
-                    break;
-                case "library":
-                    MainShellFrame.Navigate(typeof(LibraryPage));
+                    MainShellFrame.Navigate(typeof(SubscriptionsPage));
                     break;
                 case "history":
                     MainShellFrame.Navigate(typeof(HistoryPage));
                     break;
                 case "watchlater":
+                    MainShellFrame.Navigate(typeof(WatchLaterPage));
+                    break;
+                case "playlists":
+                    MainShellFrame.Navigate(typeof(PlaylistsPage));
                     break;
                 case "likedvideos":
                     MainShellFrame.Navigate(typeof(LikedVideosPage));
@@ -53,18 +63,6 @@ namespace FluentTube.App.Views
 
         private void OnMainShellNavigationViewLoaded(object sender, RoutedEventArgs e)
         {
-            var defaultItem
-                = MainShellNavigationView
-                .MenuItems
-                .OfType<NavigationViewItem>()
-                .FirstOrDefault();
-
-            MainShellNavigationView.SelectedItem
-                = MainShellNavigationView
-                .MenuItems
-                .OfType<NavigationViewItem>()
-                .FirstOrDefault(x => string.Compare(x.Tag.ToString().ToLower(), "home", true) == 0)
-                ?? defaultItem;
         }
     }
 }

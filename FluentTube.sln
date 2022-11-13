@@ -5,9 +5,13 @@ VisualStudioVersion = 17.1.32210.238
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{1D3C0D81-B070-4B98-AFA7-7244998B2668}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentTube.App", "src\FluentTube.App\FluentTube.App.csproj", "{DB3DF0F6-51CA-4CC1-AE3B-FAD7E76D699C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluentTube.App", "src\FluentTube.App\FluentTube.App.csproj", "{DB3DF0F6-51CA-4CC1-AE3B-FAD7E76D699C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentTube.Core", "src\FluentTube.Core\FluentTube.Core.csproj", "{4530B418-92E2-4174-9A87-633F782B154C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluentTube.Core", "src\FluentTube.Core\FluentTube.Core.csproj", "{4530B418-92E2-4174-9A87-633F782B154C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{AADC999B-9D4D-4B7B-A900-74922EC1D829}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentTube.ApiTests", "tests\FluentTube.ApiTests\FluentTube.ApiTests.csproj", "{A9E3C7A9-E0F6-498B-919C-FD808DB3F141}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -61,6 +65,22 @@ Global
 		{4530B418-92E2-4174-9A87-633F782B154C}.Release|x64.Build.0 = Release|Any CPU
 		{4530B418-92E2-4174-9A87-633F782B154C}.Release|x86.ActiveCfg = Release|Any CPU
 		{4530B418-92E2-4174-9A87-633F782B154C}.Release|x86.Build.0 = Release|Any CPU
+		{A9E3C7A9-E0F6-498B-919C-FD808DB3F141}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9E3C7A9-E0F6-498B-919C-FD808DB3F141}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9E3C7A9-E0F6-498B-919C-FD808DB3F141}.Debug|arm64.ActiveCfg = Debug|Any CPU
+		{A9E3C7A9-E0F6-498B-919C-FD808DB3F141}.Debug|arm64.Build.0 = Debug|Any CPU
+		{A9E3C7A9-E0F6-498B-919C-FD808DB3F141}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{A9E3C7A9-E0F6-498B-919C-FD808DB3F141}.Debug|x64.Build.0 = Debug|Any CPU
+		{A9E3C7A9-E0F6-498B-919C-FD808DB3F141}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A9E3C7A9-E0F6-498B-919C-FD808DB3F141}.Debug|x86.Build.0 = Debug|Any CPU
+		{A9E3C7A9-E0F6-498B-919C-FD808DB3F141}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9E3C7A9-E0F6-498B-919C-FD808DB3F141}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9E3C7A9-E0F6-498B-919C-FD808DB3F141}.Release|arm64.ActiveCfg = Release|Any CPU
+		{A9E3C7A9-E0F6-498B-919C-FD808DB3F141}.Release|arm64.Build.0 = Release|Any CPU
+		{A9E3C7A9-E0F6-498B-919C-FD808DB3F141}.Release|x64.ActiveCfg = Release|Any CPU
+		{A9E3C7A9-E0F6-498B-919C-FD808DB3F141}.Release|x64.Build.0 = Release|Any CPU
+		{A9E3C7A9-E0F6-498B-919C-FD808DB3F141}.Release|x86.ActiveCfg = Release|Any CPU
+		{A9E3C7A9-E0F6-498B-919C-FD808DB3F141}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -68,6 +88,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{DB3DF0F6-51CA-4CC1-AE3B-FAD7E76D699C} = {1D3C0D81-B070-4B98-AFA7-7244998B2668}
 		{4530B418-92E2-4174-9A87-633F782B154C} = {1D3C0D81-B070-4B98-AFA7-7244998B2668}
+		{A9E3C7A9-E0F6-498B-919C-FD808DB3F141} = {AADC999B-9D4D-4B7B-A900-74922EC1D829}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {997AF4A0-E27D-42E2-BE78-D714966724C3}

@@ -23,6 +23,9 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <None Remove="UserControls\VideoPlayer.xaml" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="AppSecrets.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -49,11 +52,18 @@
     <PackageReference Include="Google.Apis.Auth" Version="1.57.0" />
     <PackageReference Include="Google.Apis.Core" Version="1.57.0" />
     <PackageReference Include="Google.Apis.YouTube.v3" Version="1.57.0.2827" />
+    <PackageReference Include="YoutubeExplode" Version="6.2.4" />
     <FrameworkReference Include="Microsoft.WindowsDesktop.App" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\FluentTube.Core\FluentTube.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="UserControls\VideoPlayer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
 
 </Project>

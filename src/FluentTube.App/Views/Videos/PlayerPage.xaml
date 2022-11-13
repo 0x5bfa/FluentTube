@@ -1,0 +1,184 @@
+﻿<Page
+    x:Class="FluentTube.App.Views.Videos.PlayerPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:converters="using:FluentTube.App.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="using:FluentTube.App.Views.Videos"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:uc="using:FluentTube.App.UserControls"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary>
+                    <SolidColorBrush x:Key="NavigationViewContentGridBorderBrush" Color="Transparent" />
+                    <SolidColorBrush x:Key="NavigationViewContentBackground" Color="Transparent" />
+                    <Thickness x:Key="NavigationViewContentGridBorderThickness">0</Thickness>
+                    <CornerRadius x:Key="NavigationViewContentGridCornerRadius">0</CornerRadius>
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+            <converters:DoubleToGridLengthConverter x:Key="DoubleToGridLengthConverter" />
+            <converters:ObjectToBoolConverter x:Key="ObjectToBoolConverter" />
+            <converters:ObjectToHumanizedString x:Key="ObjectToHumanizedString" />
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <Grid>
+        <TwoPaneView
+            x:Name="twoPaneView"
+            Grid.RowSpan="2"
+            MinTallModeHeight="500"
+            MinWideModeWidth="820"
+            Pane1Length="*"
+            Pane2Length="380"
+            TallModeConfiguration="TopBottom"
+            WideModeConfiguration="LeftRight">
+
+            <TwoPaneView.Pane1>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="2*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <Border x:Name="PlayerBorder">
+                        <Border.Shadow>
+                            <ThemeShadow />
+                        </Border.Shadow>
+                        <uc:VideoPlayer Source="{x:Bind ViewModel.VideoRowUrl, Mode=OneWay}" />
+                    </Border>
+
+                    <Grid Grid.Row="1" Padding="16,16,0,24">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <TextBlock
+                            FontWeight="SemiBold"
+                            Style="{StaticResource SubtitleTextBlockStyle}"
+                            Text="{x:Bind ViewModel.Video.Snippet.Title, Mode=OneWay}" />
+                        <StackPanel
+                            Grid.Row="1"
+                            Orientation="Horizontal"
+                            Spacing="4">
+                            <TextBlock Foreground="{ThemeResource TextFillColorSecondary}" Style="{StaticResource CaptionTextBlockStyle}">
+                                <Run Text="{x:Bind ViewModel.Video.Statistics.ViewCount, Converter={StaticResource ObjectToHumanizedString}, ConverterParameter=metric}" />
+                                <Run Text="views" />
+                            </TextBlock>
+                            <TextBlock
+                                Foreground="{ThemeResource TextFillColorSecondary}"
+                                Style="{StaticResource CaptionTextBlockStyle}"
+                                Text="•" />
+                            <TextBlock
+                                Foreground="{ThemeResource TextFillColorSecondary}"
+                                Style="{StaticResource CaptionTextBlockStyle}"
+                                Text="{x:Bind ViewModel.Video.Snippet.PublishedAt, Converter={StaticResource ObjectToHumanizedString}, Mode=OneWay}" />
+                        </StackPanel>
+
+                        <Grid
+                            Grid.Row="2"
+                            Margin="-4,16,-4,0"
+                            Padding="4"
+                            Background="{ThemeResource LayerFillColorDefaultBrush}"
+                            BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+                            BorderThickness="1"
+                            ColumnSpacing="8"
+                            CornerRadius="8">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+
+                            <Button
+                                Padding="8"
+                                Background="Transparent"
+                                BorderThickness="0">
+                                <Grid ColumnSpacing="8">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <Border
+                                        Width="48"
+                                        Height="48"
+                                        Background="{ThemeResource LayerFillColorDefaultBrush}"
+                                        BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+                                        CornerRadius="32">
+                                        <!--<Image Source="https://yt3.ggpht.com/IQBdPXg8hHlsIXLsuStRvCq00xZkvR9uKWYqbJRs11d7RuHR1oPt1sQZ5r7wPkeuaoatd2qX3g" />-->
+                                    </Border>
+                                    <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                        <TextBlock Style="{StaticResource BodyStrongTextBlockStyle}" Text="{x:Bind ViewModel.Video.Snippet.ChannelTitle, Mode=OneWay}" />
+                                        <TextBlock
+                                            Foreground="{ThemeResource TextFillColorSecondary}"
+                                            Style="{StaticResource CaptionTextBlockStyle}"
+                                            Text="NaN subscribers" />
+                                    </StackPanel>
+                                </Grid>
+                            </Button>
+
+                            <StackPanel
+                                Grid.Column="2"
+                                Margin="0,0,16,0"
+                                Orientation="Horizontal"
+                                Spacing="8">
+                                <Button Content="Join" />
+                                <Button Content="Subscribed" />
+                            </StackPanel>
+
+                        </Grid>
+                    </Grid>
+                </Grid>
+            </TwoPaneView.Pane1>
+
+            <TwoPaneView.Pane2>
+                <Grid>
+                    <ScrollViewer>
+                        <Grid Padding="16" RowSpacing="16">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <NavigationView
+                                Margin="-12"
+                                IsBackButtonVisible="Collapsed"
+                                IsSettingsVisible="False"
+                                PaneDisplayMode="Top">
+                                <NavigationView.MenuItems>
+                                    <NavigationViewItem Content="Overview" IsSelected="True" />
+                                    <NavigationViewItem Content="Comments" />
+                                    <NavigationViewItem Content="Suggetions" />
+                                </NavigationView.MenuItems>
+                            </NavigationView>
+                            <Grid Grid.Row="1">
+                                <Frame />
+                                <TextBlock
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Foreground="{ThemeResource TextFillColorSecondary}"
+                                    Text="No contents available for now." />
+                            </Grid>
+                        </Grid>
+                    </ScrollViewer>
+                </Grid>
+            </TwoPaneView.Pane2>
+        </TwoPaneView>
+
+        <!--<VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="small" />
+                <VisualState x:Name="wide">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="821" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="twoPaneView.Pane1Length" Value="360" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>-->
+    </Grid>
+</Page>

@@ -45,9 +45,17 @@ namespace FluentTube.App
             return new ServiceCollection()
                 .AddSingleton(ytSrvice)
                 .AddSingleton<IMessenger>(StrongReferenceMessenger.Default)
+                .AddSingleton(new Microsoft.UI.Xaml.Controls.Frame())
                 // ViewModels
-                .AddTransient<MainViewModel>()
-                .AddTransient<HomeViewModel>()
+                .AddTransient<ViewModels.MainViewModel>()
+                .AddTransient<ViewModels.Users.HistoryViewModel>()
+                .AddTransient<ViewModels.Users.HomeViewModel>()
+                .AddTransient<ViewModels.Users.LikedVideosViewModel>()
+                .AddTransient<ViewModels.Users.PlaylistsViewModel>()
+                .AddTransient<ViewModels.Users.SubscriptionsViewModel>()
+                .AddTransient<ViewModels.Users.TrendingViewModel>()
+                .AddTransient<ViewModels.Users.WatchLaterViewModel>()
+                .AddTransient<ViewModels.Videos.PlayerViewModel>()
                 .BuildServiceProvider();
         }
 

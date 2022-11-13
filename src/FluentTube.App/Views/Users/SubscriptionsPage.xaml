@@ -1,0 +1,16 @@
+﻿<Page
+    x:Class="FluentTube.App.Views.Users.SubscriptionsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="using:FluentTube.App.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+    xmlns:toolkit="using:CommunityToolkit.WinUI.UI.Controls"
+    xmlns:youtubedata="using:Google.Apis.YouTube.v3.Data"
+    mc:Ignorable="d">
+
+    <Grid>
+        <TextBlock Text="SubscriptionsPage" />
+    </Grid>
+</Page>

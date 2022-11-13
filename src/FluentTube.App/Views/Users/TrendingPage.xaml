@@ -1,0 +1,53 @@
+﻿<Page
+    x:Class="FluentTube.App.Views.Users.TrendingPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:converter="using:FluentTube.App.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="using:FluentTube.App.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="using:CommunityToolkit.WinUI.UI.Controls"
+    xmlns:uc="using:FluentTube.App.UserControls"
+    xmlns:youtubedata="using:Google.Apis.YouTube.v3.Data"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <converter:ObjectToBoolConverter x:Key="ObjectToBoolConverter" />
+        <converter:ObjectToHumanizedString x:Key="ObjectToHumanizedString" />
+    </Page.Resources>
+
+    <Grid>
+        <ScrollViewer>
+            <Grid Margin="32">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="Trendings" />
+
+                <ItemsRepeater
+                    Grid.Row="1"
+                    Margin="0,12,0,0"
+                    ItemsSource="{x:Bind ViewModel.TrendingVideos, Mode=OneWay}">
+                    <ItemsRepeater.Layout>
+                        <UniformGridLayout
+                            ItemsStretch="Fill"
+                            MaximumRowsOrColumns="12"
+                            MinColumnSpacing="4"
+                            MinItemHeight="250"
+                            MinItemWidth="224"
+                            MinRowSpacing="4"
+                            Orientation="Horizontal" />
+                    </ItemsRepeater.Layout>
+                    <DataTemplate x:DataType="youtubedata:Video">
+                        <uc:VideoFeaturedItem
+                            Click="OnVideoFeaturedItemClick"
+                            Tag="{x:Bind Id}"
+                            Video="{x:Bind}" />
+                    </DataTemplate>
+                </ItemsRepeater>
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+</Page>
