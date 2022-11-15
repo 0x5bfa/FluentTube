@@ -155,8 +155,8 @@
                         Margin="0,44,0,0"
                         Background="{ThemeResource LayerFillColorDefaultBrush}"
                         BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
-                        BorderThickness="1"
-                        CornerRadius="8">
+                        BorderThickness="1,1,0,0"
+                        CornerRadius="8,0,0,0">
                         <Frame x:Name="MainShellFrame" />
                     </Grid>
                 </NavigationView.Content>

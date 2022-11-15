@@ -47,5 +47,43 @@ namespace FluentTube.App.UserControls
             }
         }
         #endregion
+
+        private void OnVideoPlayerStopOrPlayButtonClick(object sender, RoutedEventArgs e)
+        {
+            var mediaPlayer = VideoPlayerMediaPlayerElement.MediaPlayer;
+            var currentState = mediaPlayer.CurrentState;
+
+            switch (currentState)
+            {
+                case Windows.Media.Playback.MediaPlayerState.Playing:
+                    mediaPlayer.Pause();
+                    VideoPlayerStopOrPlayButtonFontIcon.Glyph = "\uE768";
+                    break;
+                case Windows.Media.Playback.MediaPlayerState.Paused:
+                    mediaPlayer.Play();
+                    VideoPlayerStopOrPlayButtonFontIcon.Glyph = "\uE769";
+                    break;
+            }
+        }
+
+        private void OnVideoPlayerVolumeButtonClick(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void OnOnVideoPlayerVolumeFlyoutSliderLoaded(object sender, RoutedEventArgs e)
+        {
+            OnVideoPlayerVolumeFlyoutSlider.Value = VideoPlayerMediaPlayerElement.MediaPlayer.Volume * 100;
+        }
+
+        private void OnVideoPlayerVolumeFlyoutSlideonValueChanged(object sender, RangeBaseValueChangedEventArgs e)
+        {
+            VideoPlayerMediaPlayerElement.MediaPlayer.Volume = e.NewValue / 100;
+        }
+
+        private void OnUserControlUnloaded(object sender, RoutedEventArgs e)
+        {
+            VideoPlayerMediaPlayerElement.MediaPlayer.Dispose();
+        }
     }
 }

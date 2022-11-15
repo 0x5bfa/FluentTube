@@ -7,6 +7,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="using:FluentTube.App.UserControls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Unloaded="OnUserControlUnloaded"
     mc:Ignorable="d">
 
     <UserControl.Resources>
@@ -39,52 +40,103 @@
             </Border>
 
             <Grid Padding="12,8" VerticalAlignment="Bottom">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
 
-                <StackPanel Orientation="Horizontal" Spacing="4">
-                    <Button
-                        Width="36"
-                        Height="36"
-                        Padding="0"
-                        Background="Transparent"
-                        BorderThickness="0">
-                        <FontIcon FontSize="14" Glyph="&#xE768;" />
-                    </Button>
-                    <Button
-                        Width="36"
-                        Height="36"
-                        Padding="0"
-                        Background="Transparent"
-                        BorderThickness="0">
-                        <FontIcon FontSize="14" Glyph="&#xE893;" />
-                    </Button>
-                    <Button
-                        Width="36"
-                        Height="36"
-                        Padding="0"
-                        Background="Transparent"
-                        BorderThickness="0">
-                        <FontIcon FontSize="14" Glyph="&#xE995;" />
-                    </Button>
-                </StackPanel>
+                <Slider
+                    x:Name="VideoPlayerSeeker"
+                    Margin="-4"
+                    VerticalAlignment="Top" />
 
-                <StackPanel
-                    Grid.Column="2"
-                    Orientation="Horizontal"
-                    Spacing="4">
-                    <Button
-                        Width="36"
-                        Height="36"
-                        Padding="0"
-                        Background="Transparent"
-                        BorderThickness="0">
-                        <FontIcon FontSize="14" Glyph="&#xE740;" />
-                    </Button>
-                </StackPanel>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Orientation="Horizontal" Spacing="4">
+                        <Button
+                            x:Name="VideoPlayerStopOrPlayButton"
+                            Width="36"
+                            Height="36"
+                            Padding="0"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            Click="OnVideoPlayerStopOrPlayButtonClick">
+                            <FontIcon
+                                x:Name="VideoPlayerStopOrPlayButtonFontIcon"
+                                FontSize="14"
+                                Glyph="&#xE768;" />
+                        </Button>
+                        <Button
+                            x:Name="VideoPlayerNextVideoButton"
+                            Width="36"
+                            Height="36"
+                            Padding="0"
+                            Background="Transparent"
+                            BorderThickness="0">
+                            <FontIcon FontSize="14" Glyph="&#xE893;" />
+                        </Button>
+                        <Button
+                            x:Name="VideoPlayerVolumeButton"
+                            Width="36"
+                            Height="36"
+                            Padding="0"
+                            Background="Transparent"
+                            BorderThickness="0">
+                            <Grid>
+                                <FontIcon
+                                    x:Name="VideoPlayerVolumePrimaryFontIcon"
+                                    FontSize="14"
+                                    Glyph="&#xE995;" />
+                                <FontIcon
+                                    x:Name="VideoPlayerVolumeSecondaryFontIcon"
+                                    FontSize="14"
+                                    Glyph="&#xEBC5;" />
+                            </Grid>
+                            <Button.Flyout>
+                                <Flyout Placement="TopEdgeAlignedLeft">
+                                    <Grid Width="256" ColumnSpacing="8">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="22" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock
+                                            x:Name="OnVideoPlayerVolumeFlyoutText"
+                                            HorizontalAlignment="Right"
+                                            VerticalAlignment="Center"
+                                            Text="{x:Bind OnVideoPlayerVolumeFlyoutSlider.Value, Mode=OneWay}" />
+                                        <Slider
+                                            x:Name="OnVideoPlayerVolumeFlyoutSlider"
+                                            Grid.Column="1"
+                                            IsThumbToolTipEnabled="False"
+                                            Loaded="OnOnVideoPlayerVolumeFlyoutSliderLoaded"
+                                            Maximum="100"
+                                            Minimum="0"
+                                            ValueChanged="OnVideoPlayerVolumeFlyoutSlideonValueChanged" />
+                                    </Grid>
+                                </Flyout>
+                            </Button.Flyout>
+                        </Button>
+                    </StackPanel>
+
+                    <StackPanel
+                        Grid.Column="2"
+                        Orientation="Horizontal"
+                        Spacing="4">
+                        <Button
+                            Width="36"
+                            Height="36"
+                            Padding="0"
+                            Background="Transparent"
+                            BorderThickness="0">
+                            <FontIcon FontSize="14" Glyph="&#xE740;" />
+                        </Button>
+                    </StackPanel>
+                </Grid>
             </Grid>
         </Grid>
     </Grid>
