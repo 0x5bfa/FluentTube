@@ -108,14 +108,14 @@
                                         Background="{ThemeResource LayerFillColorDefaultBrush}"
                                         BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
                                         CornerRadius="32">
-                                        <!--<Image Source="https://yt3.ggpht.com/IQBdPXg8hHlsIXLsuStRvCq00xZkvR9uKWYqbJRs11d7RuHR1oPt1sQZ5r7wPkeuaoatd2qX3g" />-->
+                                        <Image Source="{x:Bind ViewModel.Channel.Snippet.Thumbnails.Maxres.Url, Mode=OneWay}" />
                                     </Border>
                                     <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                                        <TextBlock Style="{StaticResource BodyStrongTextBlockStyle}" Text="{x:Bind ViewModel.Video.Snippet.ChannelTitle, Mode=OneWay}" />
-                                        <TextBlock
-                                            Foreground="{ThemeResource TextFillColorSecondary}"
-                                            Style="{StaticResource CaptionTextBlockStyle}"
-                                            Text="NaN subscribers" />
+                                        <TextBlock Style="{StaticResource BodyStrongTextBlockStyle}" Text="{x:Bind ViewModel.Channel.Snippet.Title, Mode=OneWay}" />
+                                        <TextBlock Foreground="{ThemeResource TextFillColorSecondary}" Style="{StaticResource CaptionTextBlockStyle}">
+                                            <Run Text="{x:Bind ViewModel.Channel.Statistics.SubscriberCount, Converter={StaticResource ObjectToHumanizedString}, ConverterParameter=metric, Mode=OneWay}" />
+                                            <Run Text="subscribers" />
+                                        </TextBlock>
                                     </StackPanel>
                                 </Grid>
                             </Button>
@@ -125,8 +125,8 @@
                                 Margin="0,0,16,0"
                                 Orientation="Horizontal"
                                 Spacing="8">
-                                <Button Content="Join" />
-                                <Button Content="Subscribed" />
+                                <Button Content="Join" IsEnabled="False" />
+                                <Button Content="Subscribe" IsEnabled="False" />
                             </StackPanel>
 
                         </Grid>
@@ -143,42 +143,29 @@
                                 <RowDefinition Height="*" />
                             </Grid.RowDefinitions>
                             <NavigationView
+                                x:Name="VideoRelatedInfoNavigationView"
                                 Margin="-12"
                                 IsBackButtonVisible="Collapsed"
                                 IsSettingsVisible="False"
-                                PaneDisplayMode="Top">
+                                ItemInvoked="OnVideoRelatedInfoNavigationViewItemInvoked"
+                                PaneDisplayMode="Top"
+                                SelectionChanged="OnVideoRelatedInfoNavigationViewSelectionChanged">
                                 <NavigationView.MenuItems>
-                                    <NavigationViewItem Content="Overview" IsSelected="True" />
-                                    <NavigationViewItem Content="Comments" />
-                                    <NavigationViewItem Content="Suggetions" />
+                                    <NavigationViewItem
+                                        Content="Overview"
+                                        IsSelected="True"
+                                        Tag="overview" />
+                                    <NavigationViewItem Content="Comments" Tag="comments" />
+                                    <NavigationViewItem Content="Suggetions" Tag="suggetions" />
                                 </NavigationView.MenuItems>
                             </NavigationView>
                             <Grid Grid.Row="1">
-                                <Frame />
-                                <TextBlock
-                                    HorizontalAlignment="Center"
-                                    VerticalAlignment="Center"
-                                    Foreground="{ThemeResource TextFillColorSecondary}"
-                                    Text="No contents available for now." />
+                                <Frame x:Name="VideoRelatedInfoFrame" />
                             </Grid>
                         </Grid>
                     </ScrollViewer>
                 </Grid>
             </TwoPaneView.Pane2>
         </TwoPaneView>
-
-        <!--<VisualStateManager.VisualStateGroups>
-            <VisualStateGroup>
-                <VisualState x:Name="small" />
-                <VisualState x:Name="wide">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="821" />
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        <Setter Target="twoPaneView.Pane1Length" Value="360" />
-                    </VisualState.Setters>
-                </VisualState>
-            </VisualStateGroup>
-        </VisualStateManager.VisualStateGroups>-->
     </Grid>
 </Page>

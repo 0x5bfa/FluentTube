@@ -32,5 +32,28 @@ namespace FluentTube.App.Views.Videos
             if (command.CanExecute(null))
                 command.Execute(null);
         }
+
+        private void OnVideoRelatedInfoNavigationViewSelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
+            => NavigatePageNavigationViewItemInvokedOrSelected(args.SelectedItemContainer.Tag.ToString().ToLower());
+
+        private void OnVideoRelatedInfoNavigationViewItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
+            => NavigatePageNavigationViewItemInvokedOrSelected(args.InvokedItemContainer.Tag.ToString().ToLower());
+
+        private void NavigatePageNavigationViewItemInvokedOrSelected(string tag)
+        {
+            switch (tag)
+            {
+                default:
+                case "overview":
+                    VideoRelatedInfoFrame.Navigate(typeof(DescriptionPage));
+                    break;
+                case "comments":
+                    VideoRelatedInfoFrame.Navigate(typeof(CommentsPage));
+                    break;
+                case "suggetions":
+                    VideoRelatedInfoFrame.Navigate(typeof(SuggestionsPage));
+                    break;
+            }
+        }
     }
 }
