@@ -57,16 +57,19 @@
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
+
                         <TextBlock
                             FontWeight="SemiBold"
+                            IsTextSelectionEnabled="True"
                             Style="{StaticResource SubtitleTextBlockStyle}"
                             Text="{x:Bind ViewModel.Video.Snippet.Title, Mode=OneWay}" />
+
                         <StackPanel
                             Grid.Row="1"
                             Orientation="Horizontal"
                             Spacing="4">
                             <TextBlock Foreground="{ThemeResource TextFillColorSecondary}" Style="{StaticResource CaptionTextBlockStyle}">
-                                <Run Text="{x:Bind ViewModel.Video.Statistics.ViewCount, Converter={StaticResource ObjectToHumanizedString}, ConverterParameter=metric}" />
+                                <Run Text="{x:Bind ViewModel.Video.Statistics.ViewCount, Converter={StaticResource ObjectToHumanizedString}, ConverterParameter=metric, Mode=OneWay}" />
                                 <Run Text="views" />
                             </TextBlock>
                             <TextBlock
@@ -109,7 +112,7 @@
                                         Background="{ThemeResource LayerFillColorDefaultBrush}"
                                         BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
                                         CornerRadius="32">
-                                        <Image Source="{x:Bind ViewModel.Channel.Snippet.Thumbnails.Maxres.Url, Mode=OneWay}" />
+                                        <Image Source="{x:Bind ViewModel.Channel.Snippet.Thumbnails.Default__.Url, Mode=OneWay}" />
                                     </Border>
                                     <StackPanel Grid.Column="1" VerticalAlignment="Center">
                                         <TextBlock Style="{StaticResource BodyStrongTextBlockStyle}" Text="{x:Bind ViewModel.Channel.Snippet.Title, Mode=OneWay}" />

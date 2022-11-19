@@ -11,6 +11,11 @@
     mc:Ignorable="d">
 
     <Grid>
-        <TextBlock Text="WatchLaterPage" />
+        <TextBlock
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Foreground="{ThemeResource TextFillColorSecondary}"
+            Style="{StaticResource BodyTextBlockStyle}"
+            Text="watch later page" />
     </Grid>
 </Page>

@@ -8,6 +8,11 @@
     mc:Ignorable="d">
 
     <Grid>
-        <TextBlock Text="Page" />
+        <TextBlock
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Foreground="{ThemeResource TextFillColorSecondary}"
+            Style="{StaticResource BodyTextBlockStyle}"
+            Text="history page" />
     </Grid>
 </Page>

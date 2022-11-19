@@ -11,6 +11,39 @@
     mc:Ignorable="d">
 
     <Grid>
-        <TextBlock Text="SubscriptionsPage" />
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid
+            Width="256"
+            Margin="16,16,0,16"
+            Background="{ThemeResource LayerFillColorDefaultBrush}"
+            BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+            BorderThickness="1"
+            CornerRadius="8">
+            <ScrollViewer>
+                <Grid Margin="16">
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Foreground="{ThemeResource TextFillColorSecondary}"
+                        Style="{StaticResource BodyTextBlockStyle}"
+                        Text="subscriptions" />
+                </Grid>
+            </ScrollViewer>
+        </Grid>
+
+        <ScrollViewer Grid.Column="1">
+            <Grid Margin="32">
+                <TextBlock
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Foreground="{ThemeResource TextFillColorSecondary}"
+                    Style="{StaticResource BodyTextBlockStyle}"
+                    Text="videos" />
+            </Grid>
+        </ScrollViewer>
     </Grid>
 </Page>
