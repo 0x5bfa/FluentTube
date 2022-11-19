@@ -28,9 +28,9 @@ namespace FluentTube.App.Views.Users
                 command.Execute(null);
         }
 
-        private void OnVideoFeaturedItemClick(object sender, RoutedEventArgs e)
+        private void OnVideoOverviewVerticalClick(object sender, RoutedEventArgs e)
         {
-            MainFrame.Navigate(typeof(Videos.PlayerPage), (sender as UserControls.VideoFeaturedItem).Tag as string);
+            MainFrame.Navigate(typeof(Videos.PlayerPage), (sender as UserControls.VideoOverviewVertical).Tag as string);
         }
     }
 }

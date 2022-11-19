@@ -49,6 +49,8 @@ namespace FluentTube.App.ViewModels.Videos
             Channel = responseChannel.Items.First();
 
             /// YouTube Explode API
+            
+            // Gets highest quality video link
             var youtube = new YoutubeClient();
             var streamManifest = await youtube.Videos.Streams.GetManifestAsync(VideoId);
             var streamInfo = streamManifest.GetMuxedStreams().GetWithHighestVideoQuality();

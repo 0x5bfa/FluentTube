@@ -5,9 +5,79 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="using:FluentTube.App.Views.Videos"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="using:CommunityToolkit.WinUI.UI.Controls"
+    xmlns:uc="using:FluentTube.App.UserControls"
+    xmlns:youtubedata="using:Google.Apis.YouTube.v3.Data"
     mc:Ignorable="d">
 
     <Grid>
-        <TextBlock Text="Page" />
+        <ScrollViewer>
+            <Grid Margin="12,0,12,12">
+                <ItemsRepeater ItemsSource="{x:Bind ViewModel.CommentThreads, Mode=OneWay}">
+                    <ItemsRepeater.Layout>
+                        <StackLayout Orientation="Vertical" Spacing="8" />
+                    </ItemsRepeater.Layout>
+                    <DataTemplate x:DataType="youtubedata:CommentThread">
+                        <Grid
+                            Padding="8"
+                            Background="{ThemeResource LayerFillColorDefaultBrush}"
+                            BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+                            BorderThickness="1"
+                            ColumnSpacing="8"
+                            CornerRadius="8">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Border
+                                Width="24"
+                                Height="24"
+                                VerticalAlignment="Top"
+                                Background="{ThemeResource LayerFillColorDefaultBrush}"
+                                CornerRadius="16">
+                                <Image Source="{x:Bind Snippet.TopLevelComment.Snippet.AuthorProfileImageUrl}" />
+                            </Border>
+                            <Grid Grid.Column="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="24" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid>
+                                    <!--<Grid
+                                        x:Name="CommentThreadAuthorDisplayNameWithBackground"
+                                        Padding="2,1"
+                                        HorizontalAlignment="Left"
+                                        x:Load="False"
+                                        Background="{ThemeResource TextFillColorTertiary}"
+                                        CornerRadius="4">
+                                        <TextBlock
+                                            Foreground="{ThemeResource TextFillColorInverse}"
+                                            Style="{StaticResource BodyStrongTextBlockStyle}"
+                                            Text="{x:Bind Snippet.TopLevelComment.Snippet.AuthorDisplayName}" />
+                                    </Grid>-->
+                                    <TextBlock
+                                        VerticalAlignment="Center"
+                                        Style="{StaticResource BodyStrongTextBlockStyle}"
+                                        Text="{x:Bind Snippet.TopLevelComment.Snippet.AuthorDisplayName}" />
+                                    <TextBlock
+                                        HorizontalAlignment="Right"
+                                        VerticalAlignment="Center"
+                                        Foreground="{ThemeResource TextFillColorSecondary}"
+                                        Style="{StaticResource CaptionTextBlockStyle}"
+                                        Text="1 days ago" />
+                                </Grid>
+                                <TextBlock
+                                    Grid.Row="1"
+                                    Foreground="{ThemeResource TextFillColorSecondary}"
+                                    IsTextSelectionEnabled="True"
+                                    Style="{StaticResource BodyTextBlockStyle}"
+                                    Text="{x:Bind Snippet.TopLevelComment.Snippet.TextDisplay}"
+                                    TextWrapping="Wrap" />
+                            </Grid>
+                        </Grid>
+                    </DataTemplate>
+                </ItemsRepeater>
+            </Grid>
+        </ScrollViewer>
     </Grid>
 </Page>

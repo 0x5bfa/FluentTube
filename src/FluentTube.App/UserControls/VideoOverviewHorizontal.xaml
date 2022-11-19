@@ -1,5 +1,5 @@
 ﻿<UserControl
-    x:Class="FluentTube.App.UserControls.VideoFeaturedItem"
+    x:Class="FluentTube.App.UserControls.VideoOverviewHorizontal"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:converters="using:FluentTube.App.Converters"
@@ -18,48 +18,33 @@
     <Button
         Padding="4"
         HorizontalAlignment="Stretch"
-        VerticalAlignment="Stretch"
+        HorizontalContentAlignment="Left"
         Background="Transparent"
         BorderThickness="0"
         Click="OnButtonClick">
-        <StackPanel>
+        <Grid ColumnSpacing="8">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
             <Border
                 x:Name="ThumbnailImageBorder"
+                Width="128"
+                Height="72"
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
                 Background="{ThemeResource LayerFillColorDefaultBrush}"
                 BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
                 BorderThickness="1"
                 CornerRadius="8">
-                <Image
-                    Width="{x:Bind ThumbnailImageBorder.Width}"
-                    Height="{x:Bind ThumbnailImageBorder.Height}"
-                    Source="{x:Bind Video.Snippet.Thumbnails.Maxres.Url}"
-                    Stretch="UniformToFill" />
+                <Image Source="{x:Bind Video.Snippet.Thumbnails.Maxres.Url}" Stretch="UniformToFill" />
             </Border>
 
             <Grid
-                Margin="0,12,0,0"
+                Grid.Column="1"
                 HorizontalAlignment="Center"
                 ColumnSpacing="8">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-
-                <Border
-                    Width="32"
-                    Height="32"
-                    VerticalAlignment="Top"
-                    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-                    BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
-                    CornerRadius="16">
-                    <!--<Image
-                        Width="32"
-                        Height="32"
-                        Source="{x:Bind Snippet.Thumbnails.Maxres.Url}" />-->
-                </Border>
-
                 <StackPanel Grid.Column="1">
 
                     <TextBlock
@@ -70,7 +55,6 @@
                         TextWrapping="Wrap" />
 
                     <TextBlock
-                        Margin="0,8,0,0"
                         Foreground="{ThemeResource TextFillColorSecondary}"
                         MaxLines="1"
                         Style="{StaticResource CaptionTextBlockStyle}"
@@ -98,6 +82,7 @@
 
                 </StackPanel>
             </Grid>
-        </StackPanel>
+
+        </Grid>
     </Button>
 </UserControl>

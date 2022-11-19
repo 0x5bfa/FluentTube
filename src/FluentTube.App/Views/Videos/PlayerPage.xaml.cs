@@ -45,13 +45,13 @@ namespace FluentTube.App.Views.Videos
             {
                 default:
                 case "overview":
-                    VideoRelatedInfoFrame.Navigate(typeof(DescriptionPage));
+                    VideoRelatedInfoFrame.Navigate(typeof(DescriptionPage), ViewModel.VideoId);
                     break;
                 case "comments":
-                    VideoRelatedInfoFrame.Navigate(typeof(CommentsPage));
+                    VideoRelatedInfoFrame.Navigate(typeof(CommentsPage), ViewModel.VideoId);
                     break;
                 case "suggetions":
-                    VideoRelatedInfoFrame.Navigate(typeof(SuggestionsPage));
+                    VideoRelatedInfoFrame.Navigate(typeof(SuggestionsPage), ViewModel.VideoId);
                     break;
             }
         }

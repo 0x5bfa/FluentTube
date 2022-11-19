@@ -55,7 +55,10 @@ namespace FluentTube.App
                 .AddTransient<ViewModels.Users.SubscriptionsViewModel>()
                 .AddTransient<ViewModels.Users.TrendingViewModel>()
                 .AddTransient<ViewModels.Users.WatchLaterViewModel>()
+                .AddTransient<ViewModels.Videos.CommentsViewModel>()
+                .AddTransient<ViewModels.Videos.DescriptionViewModel>()
                 .AddTransient<ViewModels.Videos.PlayerViewModel>()
+                .AddTransient<ViewModels.Videos.SuggestionsViewModel>()
                 .BuildServiceProvider();
         }
 

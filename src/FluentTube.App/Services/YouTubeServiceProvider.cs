@@ -25,10 +25,22 @@ namespace FluentTube.App.Services
             var file = await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///AppSecrets.json"));
             var stream = await file.OpenStreamForReadAsync();
             var secrets = GoogleClientSecrets.FromStream(stream).Secrets;
+            var scopes = new[]
+            {
+                // All
+                YouTubeService.Scope.Youtube,
+                YouTubeService.Scope.YoutubeChannelMembershipsCreator,
+                YouTubeService.Scope.YoutubeForceSsl,
+                YouTubeService.Scope.Youtubepartner,
+                YouTubeService.Scope.YoutubepartnerChannelAudit,
+                YouTubeService.Scope.YoutubeReadonly,
+                YouTubeService.Scope.YoutubeUpload,
+            };
+
 
             credential = await GoogleWebAuthorizationBroker.AuthorizeAsync(
                 secrets,
-                new[] { YouTubeService.Scope.Youtube },
+                scopes,
                 "user",
                 CancellationToken.None
             );

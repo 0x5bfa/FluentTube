@@ -41,8 +41,8 @@
                             Orientation="Horizontal" />
                     </ItemsRepeater.Layout>
                     <DataTemplate x:DataType="youtubedata:Video">
-                        <uc:VideoFeaturedItem
-                            Click="OnVideoFeaturedItemClick"
+                        <uc:VideoOverviewVertical
+                            Click="OnVideoOverviewVerticalClick"
                             Tag="{x:Bind Id}"
                             Video="{x:Bind}" />
                     </DataTemplate>

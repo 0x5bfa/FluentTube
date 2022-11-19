@@ -39,7 +39,7 @@
                 </Border.Background>
             </Border>
 
-            <Grid Padding="12,8" VerticalAlignment="Bottom">
+            <Grid VerticalAlignment="Bottom">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
@@ -47,21 +47,21 @@
 
                 <Slider
                     x:Name="VideoPlayerSeeker"
-                    Margin="-4"
+                    Margin="4,-8"
                     VerticalAlignment="Top" />
 
-                <Grid Grid.Row="1">
+                <Grid Grid.Row="1" Margin="4,0,4,2">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
 
-                    <StackPanel Orientation="Horizontal" Spacing="4">
+                    <StackPanel Orientation="Horizontal" Spacing="2">
                         <Button
                             x:Name="VideoPlayerStopOrPlayButton"
-                            Width="36"
-                            Height="36"
+                            Width="32"
+                            Height="32"
                             Padding="0"
                             Background="Transparent"
                             BorderThickness="0"
@@ -73,8 +73,8 @@
                         </Button>
                         <Button
                             x:Name="VideoPlayerNextVideoButton"
-                            Width="36"
-                            Height="36"
+                            Width="32"
+                            Height="32"
                             Padding="0"
                             Background="Transparent"
                             BorderThickness="0">
@@ -82,8 +82,8 @@
                         </Button>
                         <Button
                             x:Name="VideoPlayerVolumeButton"
-                            Width="36"
-                            Height="36"
+                            Width="32"
+                            Height="32"
                             Padding="0"
                             Background="Transparent"
                             BorderThickness="0">
@@ -99,7 +99,14 @@
                             </Grid>
                             <Button.Flyout>
                                 <Flyout Placement="TopEdgeAlignedLeft">
-                                    <Grid Width="256" ColumnSpacing="8">
+                                    <Flyout.FlyoutPresenterStyle>
+                                        <Style TargetType="FlyoutPresenter">
+                                            <Setter Property="Padding" Value="12,0" />
+                                            <Setter Property="CornerRadius" Value="{StaticResource OverlayCornerRadius}" />
+                                        </Style>
+                                    </Flyout.FlyoutPresenterStyle>
+
+                                    <Grid Width="144" ColumnSpacing="8">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="22" />
                                             <ColumnDefinition Width="*" />
@@ -112,6 +119,7 @@
                                         <Slider
                                             x:Name="OnVideoPlayerVolumeFlyoutSlider"
                                             Grid.Column="1"
+                                            VerticalAlignment="Center"
                                             IsThumbToolTipEnabled="False"
                                             Loaded="OnOnVideoPlayerVolumeFlyoutSliderLoaded"
                                             Maximum="100"
@@ -128,8 +136,8 @@
                         Orientation="Horizontal"
                         Spacing="4">
                         <Button
-                            Width="36"
-                            Height="36"
+                            Width="32"
+                            Height="32"
                             Padding="0"
                             Background="Transparent"
                             BorderThickness="0">

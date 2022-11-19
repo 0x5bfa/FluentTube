@@ -5,9 +5,26 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="using:FluentTube.App.Views.Videos"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="using:CommunityToolkit.WinUI.UI.Controls"
+    xmlns:uc="using:FluentTube.App.UserControls"
+    xmlns:youtubedata="using:Google.Apis.YouTube.v3.Data"
     mc:Ignorable="d">
 
     <Grid>
-        <TextBlock Text="Page" />
+        <ScrollViewer>
+            <Grid Margin="12,0,12,12">
+                <ItemsRepeater ItemsSource="{x:Bind ViewModel.SuggestedVideos, Mode=OneWay}">
+                    <ItemsRepeater.Layout>
+                        <StackLayout Orientation="Vertical" Spacing="6" />
+                    </ItemsRepeater.Layout>
+                    <DataTemplate x:DataType="youtubedata:Video">
+                        <uc:VideoOverviewHorizontal
+                            Click="OnVideoOverviewHorizontalClick"
+                            Tag="{x:Bind Id}"
+                            Video="{x:Bind}" />
+                    </DataTemplate>
+                </ItemsRepeater>
+            </Grid>
+        </ScrollViewer>
     </Grid>
 </Page>
