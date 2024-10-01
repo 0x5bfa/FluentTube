@@ -7,33 +7,3 @@
 <p align="center">
   A powerful yet fluent YouTube client.
 </p>
-
-## 📸 Screenshots
-
-_None_
-
-## 🧑‍💻 Contributing
-
-_None_
-
-## 🗃️ Contributors
-
-_None_
-
-## 🦜 Feedback
-
-_None_
-
-## 💳 Credit
-
-_None_
-
-## 📱 Contact
-
-_None_
-
-## ⚖️ License
-
-Copyright (c) 2022 Tomoyuki Terashita
-
-Licensed under the MIT license as stated in the [LICENSE](LICENSE).
